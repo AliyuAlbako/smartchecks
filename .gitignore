@@ -150,6 +150,17 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+<<<<<<< HEAD
+=======
+# Ignore model files
+*.pt
+*.h5
+*.ckpt
+# Ignore dataset files
+dataset/
+model/
+fine_tuned_model/*
+>>>>>>> 934778f (initial commit)
 
 # Pyre type checker
 .pyre/
@@ -191,4 +202,15 @@ cython_debug/
 #  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
+<<<<<<< HEAD
 .cursorindexingignore
+=======
+.cursorindexingignore
+
+# Ignore Hugging Face cache
+
+# Ignore all cache folders
+**/.cache/
+
+/fine_tuned_model
+>>>>>>> 934778f (initial commit)
