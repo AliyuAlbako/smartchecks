@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Feedback</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        form { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; }
+        label, input, select, textarea { display: block; width: 100%; margin-bottom: 10px; }
+        input, select, textarea { padding: 8px; }
+        button { padding: 10px 20px; background: #007BFF; color: #fff; border: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<h1 style="margin-left: 40%; margin-bottom: 0;">Submit Feedback</h1> <span style="margin-left: 40%;color:blue;">To Enhance SmartCheckAI Performance</span>
+
+<form action="/feedback" method="post">
+    <label>Text:</label>
+    <textarea name="text" rows="3" required></textarea>
+
+    <label>AI Classification:</label>ve
+        <option value="Fake News">Fake News</option>
+    </select>
+
+    <label>User Feedback:</label>
+    <select name="user_feedback" required>
+        <option value="Real News">Real News</option>
+        <option value="Fake News">Fake News</option>
+    </select>
+
+    <label>Reason (optional):</label>
+    <textarea name="reason" rows="2"></textarea>
+
+    <button type="submit">Submit Feedback</button>
+</form>
+
+</body>
+</html>

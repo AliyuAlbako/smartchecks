@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+.container{
+   background-color: #ceddbb;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+
+
+
+}
+textarea {
+    width: 60%;
+    height: 120px;
+    margin: 10px auto;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007fde;
+    color: white;
+    border: none;
+    cursor: pointer;
+    max-width: 200px;
+    margin: 20px auto;
+    border-radius: 7px
+}
+
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+}
