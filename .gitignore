@@ -157,9 +157,8 @@ dmypy.json
 *.h5
 *.ckpt
 # Ignore dataset files
-dataset/
 model/
-fine_tuned_model/*
+
 >>>>>>> 934778f (initial commit)
 
 # Pyre type checker
@@ -211,6 +210,4 @@ cython_debug/
 
 # Ignore all cache folders
 **/.cache/
-
-/fine_tuned_model
 >>>>>>> 934778f (initial commit)
