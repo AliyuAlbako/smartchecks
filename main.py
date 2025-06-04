@@ -104,6 +104,23 @@ def view_dashboard(request: Request):
         "total_feedback": total_feedback,
         "total_corrections": total_corrections
     })
+@app.post("/predict_feed", response_class=HTMLResponse)
+async def predict_from_feed(request: Request, text: str = Form(...)):
+    prediction = predict_input(text)
+    return templates.TemplateResponse("result_from_feed.html", {"request": request, "text": text, "prediction": prediction})
+
+
+@app.get("/feed", response_class=HTMLResponse)
+async def show_feed(request: Request):
+    # Load sample texts
+    sample_posts = [
+        "Boko Haram attack leaves 30 dead in Maiduguri.",
+        "Government declares free food for every citizen.",
+        "Fake news: No bombing occurred in Kaduna today.",
+        "Peace treaty signed in Southern Nasarawa."
+    ]
+    return templates.TemplateResponse("feed.html", {"request": request, "posts": sample_posts})
+
 
 
 if __name__ == "__main__":
