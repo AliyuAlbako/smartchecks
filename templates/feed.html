@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartCheckAI - Social Feed</title>
+</head>
+<body>
+    <h2>📰 Conflict News Feed (Simulated)</h2>
+    {% for post in posts %}
+        <div style="margin-bottom: 15px;">
+            <strong>{{ post }}</strong><br>
+            <form action="/predict_feed" method="post" style="display:inline;">
+                <input type="hidden" name="text" value="{{ post }}">
+                <button type="submit">Check Credibility</button>
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>
