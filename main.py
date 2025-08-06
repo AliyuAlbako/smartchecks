@@ -1,15 +1,19 @@
-from fastapi import FastAPI, Request, Form
+
+
+from fastapi import FastAPI, Request, Form, HTTPException
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from models import predict_input
+# from models import predict_input
+from models import predict_news, vectorizer
+
 import uvicorn
 import json
 from datetime import datetime
 from typing import Optional
 
-
+from utils.text_cleaning import clean_text
 
 app = FastAPI()
 
@@ -23,7 +27,7 @@ class FeedbackRequest(BaseModel):
     ai_classification: str
     user_feedback: str
     reason: Optional[str] = None
-class TextRequest(BaseModel):
+class NewsRequest(BaseModel):
     text: str
 
 
@@ -32,14 +36,30 @@ def dashboard(request: Request):
     return templates.TemplateResponse("dashboard.html", {"request": request})
 
 
-@app.post("/check")
-def check_misinformation(request: TextRequest):
-    result= predict_input(request.text)
+# @app.post("/check")
+# def check_misinformation(request: TextRequest):
+#     result= predict_input(request.text)
+#
+#     return {"text": request.text,
+#            "classification": result["classification"],
+#             "confidence":result["confidence_score"]
+#             }
 
-    return {"text": request.text,
-           "classification": result["classification"],
-            "confidence":result["confidence_score"]
-            }
+@app.post("/check")
+def check_misinformation(request: NewsRequest):
+    result= predict_news(request.text)
+
+    return {
+        "text": request.text,
+        "classification": result.prediction,
+        "confidence":result.confidence
+
+
+    }
+
+
+
+
 
 
 
@@ -106,7 +126,7 @@ def view_dashboard(request: Request):
     })
 @app.post("/predict_feed", response_class=HTMLResponse)
 async def predict_from_feed(request: Request, text: str = Form(...)):
-    prediction = predict_input(text)
+    prediction = predict_news(text)
     return templates.TemplateResponse("result_from_feed.html", {"request": request, "text": text, "prediction": prediction})
 
 
